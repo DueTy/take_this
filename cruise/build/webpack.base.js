@@ -63,7 +63,11 @@ module.exports = {
             },
             {
                 test: /\.jsx?$/,
-                loader: "happypack/loader?id=happy-babel-js",
+                loaders: [        
+                    "happypack/loader?id=happy-babel-js",            
+                    "babel-loader",
+                    "eslint-loader"
+                ],
                 include: [ resolve("src") ],
                 exclude: /node_modules/
             },

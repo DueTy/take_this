@@ -25,13 +25,13 @@ module.exports = {
     "plugins": [
         "react"
     ],
-    "globals": Object.assign({
+    "globals": {
         "process": true,
         "window": true,
         "document": true,
         "__dirname": true,
         "System": true,
-    }),
+    },
     // 定义自己的规则 0-不验证，1-warning，2-error
     "rules": {
         // 4个空格

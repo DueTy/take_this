@@ -7,6 +7,19 @@
         "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.dev.config.js",
         "dll": "webpack --config build/webpack.dll.config.js --mode production"
     },
+    "devDependencies": {
+        "eslint": "^5.11.1",
+        "eslint-loader": "^2.1.1",
+        "eslint-plugin-react": "^7.12.2",
+        "eslint-config-standard": "^10.2.1",
+        "eslint-friendly-formatter": "^3.0.0",
+        "eslint-plugin-html": "^3.0.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jsx-a11y": "^6.1.1",
+        "eslint-plugin-node": "^5.2.0",
+        "eslint-plugin-promise": "^3.4.0",
+        "eslint-plugin-standard": "^3.0.1"
+    },
     "dependencies": {
         "json-server": "^0.14.0",
         "axios": "^0.17.1",
@@ -31,17 +44,6 @@
         "happypack": "^5.0.0",
         "webpack-merge": "^4.1.2",
         "webpack-parallel-uglify-plugin": "^1.1.0",
-        "eslint": "^3.19.0",
-        "eslint-config-standard": "^10.2.1",
-        "eslint-friendly-formatter": "^3.0.0",
-        "eslint-loader": "^1.7.1",
-        "eslint-plugin-html": "^3.0.0",
-        "eslint-plugin-import": "^2.14.0",
-        "eslint-plugin-jsx-a11y": "^6.1.1",
-        "eslint-plugin-node": "^5.2.0",
-        "eslint-plugin-promise": "^3.4.0",
-        "eslint-plugin-react": "^7.11.1",
-        "eslint-plugin-standard": "^3.0.1",
         "html-webpack-plugin": "^3.2.0",
         "less": "^3.8.1",
         "less-loader": "^4.1.0",
@@ -61,6 +63,7 @@
         "webpack-dev-server": "^3.1.5",
         "babel-preset-stage-0": "^6.24.1",
         "body-parser": "~1.15.1",
-        "postcss-loader": "^3.0.0"
+        "postcss-loader": "^3.0.0",
+        "file-loader": "^2.0.0"
     }
 }

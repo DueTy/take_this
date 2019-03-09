@@ -1,0 +1,34 @@
+.sp-icon {
+    background-image: url(./sprite.png);
+    display: inline-block;
+}
+
+.icon-centos {
+    background-position: 0px 0px;
+    width: 80px;
+    height: 80px;
+}
+
+.icon-debin {
+    background-position: -80px 0px;
+    width: 80px;
+    height: 80px;
+}
+
+.icon-suse {
+    background-position: 0px -80px;
+    width: 80px;
+    height: 80px;
+}
+
+.icon-ubuntu {
+    background-position: -80px -80px;
+    width: 80px;
+    height: 80px;
+}
+
+.icon-windows {
+    background-position: -160px 0px;
+    width: 80px;
+    height: 80px;
+}

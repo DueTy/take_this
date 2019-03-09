@@ -1,0 +1,28 @@
+
+.header{
+    box-shadow: 0 1px 1px #e1e1e1;
+    background: #fff;
+
+    .header-wrap{
+        width: 1200px;
+        position: relative;
+        margin: auto;
+        height: 70px;
+        justify-content: center;
+    }
+    
+    @avatarSize: 40px;
+    .profile{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        right: 30px;
+        margin-top: -@avatarSize / 2;
+    }
+
+    .avatar{
+        width: @avatarSize;
+        height: @avatarSize;
+        border-radius: @avatarSize;
+    }
+}
