@@ -2,7 +2,7 @@
     "name": "cruise",
     "description": "A mock server for homework",
     "scripts": {
-        "dev": "webpack-dev-server --config ./build/webpack.dev.config.js",
+        "dev": "webpack-dev-server --config ./build/webpack.dev.config.js --open",
         "dll": "webpack --config build/webpack.dll.config.js --mode production",
         "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js",
         "start": "json-server --watch ./db.json --port 8080 --static ./dist",

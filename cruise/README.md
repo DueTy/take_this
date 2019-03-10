@@ -2,16 +2,28 @@
 
 ### 运行（已打包的文件dist）
 
+
 ```
+npm install json-server
 npm start
 ```
+地址：localhost:8080
+
 ### dev&production
+先安装
+
+```
+yarn  
+npm install // 或者
+```
+
 #### dev
 
 ```
 npm run mock
 npm run dev
 ```
+
 #### production
 
 ```

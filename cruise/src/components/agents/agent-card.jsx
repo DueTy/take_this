@@ -13,7 +13,7 @@ export default class AgentCard extends React.Component {
         return (
             <section className="agent-card flex border-box card" ref={node => { this.ref = node; }}>
                 <div className="avatar-container flex flex-center">
-                    <i className="sp-icon icon-windows" />
+                    <i className={"sp-icon" + ` icon-${cardData.os}`} />
                 </div>
                 <div className="detail flex">
                     <div className="msg-row flex border-box">
