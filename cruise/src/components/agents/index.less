@@ -235,8 +235,8 @@
         width: 0;
         height: 0;
         border-width: 0 9px 18px;
+        border-color: transparent transparent #00b4cf;
         border-style: solid;
-        border-color:transparent transparent #00b4cf;/*透明 透明  灰*/
         position: absolute;
         top: -18px;
         left: 23px;
@@ -246,11 +246,23 @@
             width: 0;
             height: 0;
             border-width: 0 9px 18px;
+            border-color: transparent transparent #fff;
             border-style: solid;
-            border-color:transparent transparent #fff;/*透明 透明  灰*/
             position: absolute;
             top: 1px;
             left: -9px;
+        }
+    }
+
+    .icon-close{
+        font-size: 16px;
+        color: #00b4cf;
+        position: absolute;
+        top: 13px;
+        right: 18px;
+
+        &:hover{
+            color: #01869a;
         }
     }
 
@@ -274,5 +286,20 @@
 
     .hard-btn{
         padding: 8px 7px;
+    }
+}
+
+.agent-add-form.show-up{
+    .triangle{
+        border-width: 18px 9px 0;
+        border-color: #00b4cf transparent transparent;
+        top: unset;
+        bottom: -18px;
+
+        &::after{
+            border-width: 18px 9px 0;
+            border-color: #fff transparent transparent;
+            top: -19px;
+        }
     }
 }

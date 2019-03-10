@@ -50,10 +50,14 @@ export default class AgentCard extends React.Component {
         );
     }
     
-    handleAddClick = (data, e) => {        
+    handleAddClick = (data, e) => {   
+        const
+            showUp = (document.body.clientHeight - e.nativeEvent.pageY) < 190; // 计算下方是否有足够空间展开弹窗        
+
         this.props.addCall({
             card: data,
-            ref: this.ref
+            ref: this.ref,
+            showUp
         });
     }
 }

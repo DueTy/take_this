@@ -16,7 +16,7 @@
         position: absolute;
         right: 0;
         top: 50%;
-        right: 30px;
+        right: 40px;
         margin-top: -@avatarSize / 2;
     }
 
@@ -24,5 +24,61 @@
         width: @avatarSize;
         height: @avatarSize;
         border-radius: @avatarSize;
+    }
+
+
+    .profile-menu{
+        position: absolute;
+        right: 20px;
+        text-decoration: none;
+        top: 50%;
+        margin-top: -8px;
+        
+        .icon-angle-up{   
+            transform: rotate(180deg); 
+        }
+
+        &:hover{
+            .menu{
+                display: block;
+            }
+            
+            .icon-angle-up{
+                transform: rotate(0deg);
+            }
+        }
+    }
+
+    @menuWid: 138px;
+    .menu{
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        width: @menuWid;
+        left: 0;
+        margin-left: -(@menuWid / 2);
+        background: #fff;
+        box-shadow: 1px 1px 1px #e1e1e1, 0 -1px 1px #e1e1e1;
+        z-index: 2;
+        padding: 12px 0;
+    }
+
+    .menu-item{
+        justify-content: center;
+        height: 30px;
+        color: #2d4054;
+
+        &:hover{
+            background: #efefef;
+        }
+
+        .icon{
+            text-align: center;
+            flex: 0 0 30px;
+        }
+
+        .name{
+            flex: 0 0 85px;
+        }
     }
 }

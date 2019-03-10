@@ -2,6 +2,9 @@
 
 import React from "react";
 
+import { debounce } from "@/common/utils/";
+import api from "@/common/api/agent";
+
 export default class CtrlBar extends React.Component {
 
     constructor(props) {
@@ -18,7 +21,8 @@ export default class CtrlBar extends React.Component {
                 { icon: "th-card", name: "card-layout" },
                 { icon: "th-list", name: "list-layout" }
             ],
-            currentLayout: "card-layout"
+            currentLayout: "card-layout",
+            searchValue: ""
         };
     }
     render() {
@@ -31,7 +35,7 @@ export default class CtrlBar extends React.Component {
                     {
                         state.tabs.map((type, key) => (
                             <li 
-                                onClick={() => this.setState({ currentType: type.name })}
+                                onClick={() => this.handleTypeChange(type.name)}
                                 key={key} 
                                 className={
                                     "type-tab-btn border-box transition-el " + 
@@ -43,8 +47,8 @@ export default class CtrlBar extends React.Component {
                     }
                 </ul>
                 <div className="search-ctrl flex">
-                    <i className="icon-search" />
-                    <input type="text" className="search-ipt" />
+                    <i className="icon-search" onClick={this.handleSeachClick} />
+                    <input onChange={e => this.handleSearchChange(e.target.value)} type="text" className="search-ipt" />
                 </div>
                 <div className="layout-ctrl flex">
                     {
@@ -64,5 +68,27 @@ export default class CtrlBar extends React.Component {
                 </div>
             </section>
         );
+    }
+
+    handleSearchChange = debounce(searchValue => {
+        this.setState({ searchValue });
+    }, 500)
+
+    handleSeachClick = () => {
+        const
+            id = this.state.searchValue;
+
+        if (!id) {
+            this.searchCall(false);
+            return;
+        }
+
+        api.searchAgent({ id }).then(res => {
+            this.props.searchCall(res);
+        });
+    }
+
+    handleTypeChange = type => {
+        this.setState({ currentType: type }, () => this.props.typeChangeCall(type));
     }
 }

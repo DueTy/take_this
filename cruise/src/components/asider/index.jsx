@@ -3,6 +3,9 @@
 import "./index.less";
 import React from "react";
 
+import routes from "@/common/routes";
+import { Link } from "react-router-dom";
+
 export default class Asider extends React.Component {
     constructor(props) {
         super(props);
@@ -46,12 +49,14 @@ export default class Asider extends React.Component {
                         DASHBOARD
                     </li>
                     {
-                        state.menuList.map((menu, key) => (
-                            <li 
-                                className={`menu-item transition-el ${key === state.currentMenu ? "item-active" : ""}`} 
-                                key={key} onClick={e => this.setState({ currentMenu: key })}>
-                                <i className={`menu-icon transition-el ${menu.icon ? "icon-" + menu.icon : ""}`} />
-                                { menu.name.toLocaleUpperCase() }
+                        routes.map((menu, key) => (
+                            <li onClick={e => this.setState({ currentMenu: key })} key={key}>
+                                <Link
+                                    className={`menu-item transition-el ${key === state.currentMenu ? "item-active" : ""}`} 
+                                    to={menu.path} >
+                                    <i className={`menu-icon transition-el ${menu.icon ? "icon-" + menu.icon : ""}`} />
+                                    { menu.name.toLocaleUpperCase() }
+                                </Link>
                             </li>
                         ))
                     }

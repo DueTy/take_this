@@ -5,10 +5,12 @@ import "@/assets/os icons/index.css";
 import React from "react";
 
 import StatusHeader from "./status-header";
-// import CtrlBar from "./ctrl-bar";
+import CtrlBar from "./ctrl-bar";
 import AgentCard from "./agent-card";
-import Popover from "./popover";
+import Popover from "@/components/popover";
 import ResourceAddForm from "./resource-add-form";
+
+import api from "@/common/api/agent";
 
 
 export default class Agents extends React.Component {
@@ -16,41 +18,18 @@ export default class Agents extends React.Component {
         super(props);
 
         this.state = {
-            agentList: [
-                {
-                    "name": "bjstdmngbdr08.thoughtworks.com",
-                    "os": "windows",
-                    "status": "building",
-                    "type": "virtual",
-                    "ip": "192.168.1.80",
-                    "location": "/var/lib/cruise-agent",
-                    "resources": [
-                        "Firefox",
-                        "Safari",
-                        "Ubuntu",
-                        "Chrome"
-                    ],
-                    "id": 2
-                },
-                {                    
-                    "name": "bjstdmngbdr15.thoughtworks.com",
-                    "os": "suse",
-                    "status": "idle",
-                    "type": "physical",
-                    "ip": "192.168.1.110",
-                    "location": "/var/lib/cruise-agent",
-                    "resources": [],
-                    "id": 5
-                }
-            ],
+            agentList: [],
             addPopShow: false,
             popoverProps: {
                 style: {
                     left: -600,
                     top: -600
                 },
-                target: document.body
-            }
+                target: null,
+                showUp: false,
+                currentData: null
+            },
+            fetchedData: null
         };
     }
 
@@ -61,7 +40,7 @@ export default class Agents extends React.Component {
         return (
             <section className="agents">
                 <StatusHeader />
-                {/* <CtrlBar /> */}
+                <CtrlBar typeChangeCall={this.handleTypeChange} searchCall={this.handleSearch} />
                 <div ref={node => { this.agentListContainer = node; }}>
                     {
                         state.agentList.map((agent, key) => (
@@ -71,6 +50,8 @@ export default class Agents extends React.Component {
                 </div>
                 <Popover visible={state.addPopShow} {...state.popoverProps} >
                     <ResourceAddForm 
+                        cardData={state.popoverProps.currentData}
+                        showUp={state.popoverProps.showUp}
                         addCall={this.handlePopConfirmClick}
                         cancelCall={() => this.setState({ addPopShow: false })}
                     />
@@ -79,22 +60,42 @@ export default class Agents extends React.Component {
         );
     }
 
+    componentDidMount() {   
+        api.getAgents().then(fetchedData => {
+            this.setState({ fetchedData }, () => this.handleTypeChange("all"));
+        });
+    }
+
     handleCardAddClick = data => {
+
+        const
+            style = data.showUp ?  
+                { left: 111, top: -111 } : 
+                { left: 111, top: 111 }; // 计算pop出现位置
 
         this.setState({
             addPopShow: true,
-            
             popoverProps: {
-                style: {
-                    left: 111,
-                    top: 111
-                },
-                target: data.ref
+                style,
+                target: data.ref,
+                showUp: data.showUp,
+                currentData: data.card
             }
         });
     }
 
-    handlePopConfirmClick = value => {
+    handleSearch = data => {
+        if (!data) {
+            this.setState({ agentList: this.state.fetchedData });
+        }
+        this.setState({ agentList: [ data ] });
+    }
+
+    handleTypeChange = type => {
+        const
+            fetchedData = this.state.fetchedData,
+            agentList = type === "all" ? fetchedData : fetchedData.filter(item => item.type === type);
         
+        this.setState({ agentList });
     }
 }
