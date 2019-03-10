@@ -14,7 +14,7 @@ export default class Header extends React.Component {
                     <a href="javascript: void(0);" className="profile">
                         <img className="avatar" src={avatar} />
                     </a>
-                    <a href="javascript: void(0);" className="profile-menu">
+                    <div href="javascript: void(0);" className="profile-menu">
                         <i className="icon-angle-up" />
                         <div className="menu flex">
                             <a className="menu-item flex transition-el">
@@ -26,7 +26,7 @@ export default class Header extends React.Component {
                                 <span className="name flex flex-center">Sign Out</span>
                             </a>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </header>
         );

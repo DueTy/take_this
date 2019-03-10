@@ -2,6 +2,8 @@
 
 import React from "react";
 
+// import api from "@/common/api/agent";
+
 export default class AgentCard extends React.Component {
     render() {
         const
@@ -37,7 +39,7 @@ export default class AgentCard extends React.Component {
                         <ul className="flex">
                             {
                                 cardData.resources.map((browser, key) => (
-                                    <li key={key} className="browser-item transition-el hard-btn gray-btn flex">
+                                    <li onClick={e => this.handleDeleteClick(key)} key={key} className="browser-item transition-el hard-btn gray-btn flex">
                                         {browser}
                                         <i className="icon-trash" />
                                     </li>
@@ -59,5 +61,13 @@ export default class AgentCard extends React.Component {
             ref: this.ref,
             showUp
         });
+    }
+
+    handleDeleteClick = index => {
+        const data = {
+            card: this.props.data,
+            index
+        };
+        this.props.deleteCall(data);
     }
 }

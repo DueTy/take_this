@@ -47,7 +47,7 @@ export default class CtrlBar extends React.Component {
                     }
                 </ul>
                 <div className="search-ctrl flex">
-                    <i className="icon-search" onClick={this.handleSeachClick} />
+                    <i className="icon-search transition-el" onClick={this.handleSeachClick} />
                     <input onChange={e => this.handleSearchChange(e.target.value)} type="text" className="search-ipt" />
                 </div>
                 <div className="layout-ctrl flex">

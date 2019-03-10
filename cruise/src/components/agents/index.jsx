@@ -44,7 +44,12 @@ export default class Agents extends React.Component {
                 <div ref={node => { this.agentListContainer = node; }}>
                     {
                         state.agentList.map((agent, key) => (
-                            <AgentCard key={key} data={agent} addCall={this.handleCardAddClick} />
+                            <AgentCard 
+                                key={key} 
+                                data={agent} 
+                                addCall={this.handleCardAddClick} 
+                                deleteCall={this.handleCardBrowserDelete}
+                            />
                         ))
                     }
                 </div>
@@ -97,5 +102,21 @@ export default class Agents extends React.Component {
             agentList = type === "all" ? fetchedData : fetchedData.filter(item => item.type === type);
         
         this.setState({ agentList });
+    }
+
+    handleCardBrowserDelete = data => {
+
+        const 
+            card = data.card,
+            id = card.id;
+
+        card.resources.splice(data.index, 1);
+
+        api.putAgent({ data: card, id }).then(() => {
+            const
+                restCards = this.state.fetchedData.filter(card => data.card.id !== card.id);
+            this.setState({ fetchedData: [ card, ...restCards  ] });
+        });
+
     }
 }

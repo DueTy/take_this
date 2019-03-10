@@ -59,14 +59,22 @@ export default class ResourceAddForm extends React.Component {
     }, 500);
 
     handleConfirmClick = () => {
-        const
-            data = this.props.cardData;
-        
-        data.resources.push(this.state.inputValue);
-        
-        api.putAgent({ data, id: data.id });
-        this.handleCancelClick();
-        this.validate(this.props.addCall);
+
+        this.validate(() => {
+            const
+                data = this.props.cardData,
+                inputValue = this.state.inputValue;
+
+            if (inputValue.split(",").length) {
+                data.resources = [ ...data.resources, ...inputValue.split(",") ];
+            } else {
+                data.resources.push(this.state.inputValue);
+            }
+            
+            api.putAgent({ data, id: data.id }).then(() => {
+                this.handleCancelClick();
+            });
+        });
     }
 
     handleCancelClick = () => {
@@ -76,8 +84,5 @@ export default class ResourceAddForm extends React.Component {
             errorTip: "",
             inputValue: ""
         }, () => this.props.cancelCall());
-
-        console.log(this.state.inputValue);
-        
     }
 }

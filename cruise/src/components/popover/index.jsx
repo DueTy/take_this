@@ -23,7 +23,9 @@ export default class Popover extends React.Component {
             this.props.target.appendChild(this.container);
             this.renderPopover();
         } else {
-            this.props.target && this.props.target.removeChild(this.container);
+            this.props.target && 
+                this.container.parentElement === this.props.target && 
+                this.props.target.removeChild(this.container);
         }
     }
 
